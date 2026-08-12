@@ -1,11 +1,17 @@
-function Searchbar({ value, onChange }) {
+function Searchbar({ value, onChange, onKeyDown, onClick }) {
+  
+
+
   return (
     <>
       <input
+        className="bg-white w-[38vw] h-12 px-8 rounded-3xl border border-[#e6e1e1]"
         type="text"
-        placeholder="Enter Music Name"
+        placeholder="Search"
         name="searchBar"
         onChange={onChange}
+        onKeyDown={onKeyDown}
+        onClick={onClick}
         value={value}
       ></input>
     </>

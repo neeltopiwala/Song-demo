@@ -1,34 +1,18 @@
-export default function MusicCard({
-  thumbnail,
-  songName,
-  singerName,
-  onClick,
-}) {
-    console.log(singerName)
-
-  const singerNames = singerName?.reduce((acc, singer) => {
-    acc += singer.name + ", ";
-    return acc;
-  },"") || "";
-
+function MusicCard({ count, thumbnail, songName, artist, duration }) {
   return (
-    <div
-      onClick={onClick}
-      className="w-48 cursor-pointer rounded-lg p-3 transition-colors hover:bg-gray-100"
-    >
-      <img
-        src={thumbnail}
-        alt={songName}
-        className="mb-3 aspect-square w-full rounded-md object-cover"
-      />
+    <div className="px-6 py-8 w-full h-10 flex flex-row justify-between items-center hover:bg-white">
+      <div className="flex gap-5 justify-between items-center">
+      <span>{count}</span>
+      <img className="h-10" src={thumbnail} alt={songName}></img>
+      <span>{songName}</span>
+      </div>
 
-      <h3 className="truncate text-sm font-semibold text-gray-900">
-        {songName}
-      </h3>
 
-      <p className="truncate text-sm text-gray-500">
-        {singerNames}
-      </p>
+      <span>{artist}</span>
+
+      <span>{duration}</span>
     </div>
   );
 }
+
+export default MusicCard;
