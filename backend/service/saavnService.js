@@ -2,15 +2,16 @@ const axios = require("axios");
 const asyncHandler = require("../utils/asyncHandler");
 const AppError = require("../utils/errorHandler");
 
-const searchSongsFromSaavn = async (query) => {
+const searchSongsFromSaavn = async (q, limit = 24) => {
   try {
     const response = await axios.get(`${process.env.SONG_API}/search/songs`, {
       params: {
-        query,
+        query: q,
+        limit: limit,
       },
     });
 
-    return response;
+    return response.data;
   } catch (error) {
     const statusCode = error.response?.status || 503;
 

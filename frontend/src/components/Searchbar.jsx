@@ -1,7 +1,4 @@
 function Searchbar({ value, onChange, onKeyDown, onClick }) {
-  
-
-
   return (
     <>
       <input

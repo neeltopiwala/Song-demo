@@ -13,6 +13,12 @@ app.use(express.json());
 
 
 app.use('/api/songs', require('./routes/musicRouter'));
+app.use('/api/albums', require('./routes/albumRouter'));
+app.use('/api/artist', require('./routes/artistRouter'));
+app.use('/api/playlist', require('./routes/playListRouter'));
+
+
+
 app.get('/', (req, res) => res.send('SaaS Dashboard API running'));
 
 

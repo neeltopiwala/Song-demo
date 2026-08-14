@@ -9,12 +9,14 @@ function Searchpage() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}/songs/searchsong?q=${searchTerm}`)
+      .get(
+        `${import.meta.env.VITE_API_BASE_URL}/songs/searchsong?q=${searchTerm}`
+      )
       .then((response) => {
         setSongList({ ...response.data.data });
       });
   }, [searchTerm]);
-  
+
   return (
     <>
       <div className="bg-[#F6F6F6] p-7">
@@ -26,8 +28,6 @@ function Searchpage() {
         </h1>
         <h6 className="text-sm">{songsList?.total} results</h6>
         <div className="mt-4 ">
-
-               
           {songsList?.results?.map((song, index) => {
             return (
               <MusicCard
@@ -35,12 +35,11 @@ function Searchpage() {
                 count={index + 1}
                 thumbnail={song?.image[0]?.url}
                 songName={song?.name}
-                artist={"heelo"}
+                artist={song?.artists?.primary || []}
                 duration={song?.duration}
               />
             );
           })}
-
         </div>
       </div>
     </>

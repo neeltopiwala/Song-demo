@@ -1,14 +1,13 @@
 const retriveIntialData = (intialData) => {
-    
-  let info = Object.values(intialData).reduce((acc, i) => {
-    let categories = i.results.map((category) => {
-      return category;
-    });
-    acc = [...acc, ...categories];
+  let info = intialData.reduce((acc, i) => {
+    if (i.status !== "fulfilled") {
+      return acc;
+    }
+    acc[i.value.data.results[0].type] = [...i.value.data.results];
     return acc;
-  }, []);
+  }, {});
 
-  return info;
+  console.log(info);
+  return info
 };
-
 export { retriveIntialData };

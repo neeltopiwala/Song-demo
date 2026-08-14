@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+.slick-prev{
+    position: absolute;
+    top: 45% !important;
+    left: -30px !important;
+}
+
+.slick-next{
+    position: absolute;
+    top: 45% !important;
+    right: 0px !important;
+}
+
+
+.slick-prev::before, 
+.slick-next::before {
+  display: none !important;
+  content: "" !important;
+}
