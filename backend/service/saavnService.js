@@ -25,11 +25,9 @@ const searchSongsFromSaavn = async (q, limit = 24) => {
 const getSongFromSaavn = async (id) => {
   try {
     const response = await axios.get(`${process.env.SONG_API}/songs/${id}`);
-
     return response;
   } catch (error) {
     const statusCode = error.response?.status || 503;
-
     const message =
       error.response?.data?.message || error.message || "Song not found error";
 
@@ -48,8 +46,17 @@ const globalSearch = asyncHandler(async (searchTerm) => {
   return data;
 });
 
+const getSongSuggestion = asyncHandler(async (id) => {
+  const { data } = await axios.request({
+    method: "GET",
+    url: `${process.env.SONG_API}/songs/${id}/suggestions`,
+  });
+  return data;
+});
+
 module.exports = {
   searchSongsFromSaavn,
   getSongFromSaavn,
+  getSongSuggestion,
   globalSearch,
 };

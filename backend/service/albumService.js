@@ -7,11 +7,25 @@ const searchAlbumFromSaavn = asyncHandler(async (albumName, limit = 10) => {
     url: `${process.env.SONG_API}/search/albums`,
     params: {
       query: albumName,
-      limit : limit
+      limit: limit,
     },
   });
   return data;
 });
 
+const getAlbumById = asyncHandler(async (id) => {
+  const { data } = await axios.request({
+    method: "GET",
+    url: `${process.env.SONG_API}/albums`,
+    params: {
+      id: id,
+    },
+  });
+  return data;
+});
 
-module.exports = {searchAlbumFromSaavn}
+const getSongById = asyncHandler(async (id,  ) => {
+
+})
+
+module.exports = { searchAlbumFromSaavn, getAlbumById };

@@ -1,20 +1,44 @@
 @import "tailwindcss";
 
-.slick-prev{
+@theme {
+  --breakpoint-lg: 68.75rem;
+}
+
+.slick-prev {
+    visibility: hidden;
     position: absolute;
     top: 45% !important;
     left: -30px !important;
 }
 
-.slick-next{
+.slick-next {
+    visibility: hidden;
     position: absolute;
     top: 45% !important;
     right: 0px !important;
 }
 
 
-.slick-prev::before, 
+.slick-prev::before,
 .slick-next::before {
-  display: none !important;
-  content: "" !important;
+    display: none !important;
+    content: "" !important;
 }
+
+.slick-track {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.hello:hover {
+    .slick-prev,
+    .slick-next {
+        visibility: visible;
+    }
+}
+
+.slick-disabled {
+    opacity: 40%;
+}
+
+

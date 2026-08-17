@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { artistRandom } = require("../controller/artist");
+const { artistRandom, songsByArtist } = require("../controller/artist");
 
 // router.get('/album',albumRandomly)
 router.get("/intitialArtist", artistRandom);
-
+router.get("/:artistId/songs", songsByArtist)
 module.exports = router;

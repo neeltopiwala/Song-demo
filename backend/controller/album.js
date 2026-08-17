@@ -1,7 +1,7 @@
 const asyncHandler = require("../utils/asyncHandler");
 const {randomIndexGenerater} = require("../utils/random")
 
-const {searchAlbumFromSaavn} = require("../service/albumService")
+const {searchAlbumFromSaavn, getAlbumById} = require("../service/albumService")
 const {SEARCH_TERMS} = require("../constants")
 
 
@@ -11,4 +11,10 @@ const albumRandomly = asyncHandler(async (req, res) => {
     res.json(randomAlbum.data);
 })
 
-module.exports = { albumRandomly }
+const getAlbum = asyncHandler(async (req, res) => {
+    const {albumId} = req.params
+    const album = await getAlbumById(albumId)
+    res.json(album)
+})
+
+module.exports = { albumRandomly, getAlbum }

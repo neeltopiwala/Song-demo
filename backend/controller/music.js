@@ -2,6 +2,7 @@ const {
   searchSongsFromSaavn,
   getSongFromSaavn,
   globalSearch,
+  getSongSuggestion,
 } = require("../service/saavnService");
 const { randomIndexGenerater } = require("../utils/random");
 
@@ -10,7 +11,6 @@ const asyncHandler = require("../utils/asyncHandler");
 
 const searchSongs = asyncHandler(async (req, res) => {
   const { q, limit } = req.query;
-  console.log(q, limit);
   const songs = await searchSongsFromSaavn(q, limit);
   res.json(songs.data);
 });
@@ -18,10 +18,7 @@ const searchSongs = asyncHandler(async (req, res) => {
 const getSongById = asyncHandler(async (req, res) => {
   const { songId } = req.params;
   const songInfomation = await getSongFromSaavn(songId);
-  res.json({
-    success: true,
-    data: songInfomation.data,
-  });
+  res.json(songInfomation.data);
 });
 
 const searchRandomly = asyncHandler(async (req, res) => {
@@ -30,4 +27,10 @@ const searchRandomly = asyncHandler(async (req, res) => {
   res.json(loadingInfo.data);
 });
 
-module.exports = { searchSongs, getSongById, searchRandomly };
+const songSuggestion = asyncHandler(async (req, res) => {
+  const { songId } = req.params;
+  const songRecommendation = await getSongSuggestion(songId);
+  res.json(songRecommendation.data);
+});
+
+module.exports = { searchSongs, getSongById, searchRandomly, songSuggestion };
